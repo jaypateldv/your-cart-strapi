@@ -4,7 +4,8 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "product"
+    "displayName": "product",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,8 +17,7 @@
       "unique": false,
       "maxLength": 77,
       "required": true,
-      "minLength": 3,
-      "private": true
+      "minLength": 3
     }
   }
 }
