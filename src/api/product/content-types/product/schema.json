@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "unique": false,
+      "maxLength": 77,
+      "required": true,
+      "minLength": 3,
+      "private": true
+    }
+  }
+}
