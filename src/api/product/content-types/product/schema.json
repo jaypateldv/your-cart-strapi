@@ -71,6 +71,12 @@
     "availableQty": {
       "type": "integer",
       "required": true
+    },
+    "order": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::order.order",
+      "inversedBy": "orderProducts"
     }
   }
 }

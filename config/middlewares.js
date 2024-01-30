@@ -3,6 +3,7 @@ module.exports = [
   'strapi::errors',
   'strapi::security',
   'strapi::cors',
+  "global::userAuth",
   'strapi::poweredBy',
   'strapi::query',
   'strapi::body',
