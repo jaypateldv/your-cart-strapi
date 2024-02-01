@@ -9,21 +9,33 @@ const { createCoreController } = require('@strapi/strapi').factories;
 module.exports = createCoreController('api::todo.todo', {
 
   async create(ctx) {
-    await this.validateQuery(ctx);
-    console.log(ctx.request.body);
-    let sanitizedQueryParams = await this.sanitizeQuery(ctx);
-    const userId = ctx.state.user.id;
-    const data = { ...ctx.request.body['data'], user: userId };
-    const results = await strapi.service('api::todo.todo').create({ data });
-    return this.transformResponse(results);
+    try {
+      await this.validateQuery(ctx);
+      const userId = ctx.state.user.id;
+      const data = { ...ctx.request.body['data'], user: userId };
+      const results = await strapi.service('api::todo.todo').create({ data });
+      return this.transformResponse(results);
+    } catch (err) {
+      ctx.response.body = err.details;
+      ctx.response.status = err.name == 'ValidationError' ? 400 : 501;
+      ctx.response.message = err.name;
+      return ctx;
+    }
   },
   async find(ctx) {
-    await this.validateQuery(ctx);
-    let sanitizedQueryParams = await this.sanitizeQuery(ctx);
-    const userId = ctx.state.user.id;
-    sanitizedQueryParams = { ...sanitizedQueryParams, user: { id: userId } };
-    const { results, pagination } = await strapi.service('api::todo.todo').find(sanitizedQueryParams);
-    return this.transformResponse(results, { pagination });
+    try {
+      await this.validateQuery(ctx);
+      let sanitizedQueryParams = await this.sanitizeQuery(ctx);
+      const authUserId = ctx.state.user.id;
+      sanitizedQueryParams = { ...sanitizedQueryParams };
+      const { results, pagination } = await strapi.service('api::todo.todo').find(sanitizedQueryParams, authUserId);
+      return this.transformResponse(results, { pagination });
+    } catch (error) {
+      ctx.response.body = { ...error.details, error: error.message };
+      ctx.response.status = error.name == 'ValidationError' ? 400 : 501;
+      ctx.response.message = error.name;
+      return ctx;
+    }
   },
 
   async update(ctx) {

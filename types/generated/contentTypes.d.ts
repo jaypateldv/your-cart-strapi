@@ -952,14 +952,30 @@ export interface ApiTodoTodo extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
+    title: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 3;
+      }>;
+    description: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 5;
+      }>;
     dueDate: Attribute.DateTime & Attribute.Required;
     user: Attribute.Relation<
       'api::todo.todo',
       'oneToOne',
       'plugin::users-permissions.user'
     >;
+    Priority: Attribute.Enumeration<
+      ['Urgent', 'High', 'Medium', 'Low', 'Very Low']
+    > &
+      Attribute.Required;
+    Status: Attribute.Enumeration<
+      ['Pending', 'In Progress', 'Completed', 'Cancelled']
+    > &
+      Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

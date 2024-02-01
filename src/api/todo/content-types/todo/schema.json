@@ -14,10 +14,13 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "minLength": 3
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true,
+      "minLength": 5
     },
     "dueDate": {
       "type": "datetime",
@@ -27,6 +30,27 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "Priority": {
+      "type": "enumeration",
+      "enum": [
+        "Urgent",
+        "High",
+        "Medium",
+        "Low",
+        "Very Low"
+      ],
+      "required": true
+    },
+    "Status": {
+      "type": "enumeration",
+      "enum": [
+        "Pending",
+        "In Progress",
+        "Completed",
+        "Cancelled"
+      ],
+      "required": true
     }
   }
 }
