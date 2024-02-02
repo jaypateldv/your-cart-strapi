@@ -70,6 +70,17 @@
       "relation": "oneToOne",
       "target": "api::cart.cart",
       "inversedBy": "user"
+    },
+    "address": {
+      "type": "component",
+      "repeatable": false,
+      "component": "user-details.address",
+      "required": true
+    },
+    "mobile": {
+      "type": "string",
+      "maxLength": 11,
+      "minLength": 10
     }
   }
 }

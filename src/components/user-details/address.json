@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_user_details_addresses",
+  "info": {
+    "displayName": "Address",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "addressLine1": {
+      "type": "string",
+      "required": true
+    },
+    "addressLine2": {
+      "type": "string"
+    },
+    "State": {
+      "type": "string"
+    },
+    "City": {
+      "type": "string"
+    },
+    "Pincode": {
+      "type": "biginteger",
+      "max": "999999",
+      "min": "000000"
+    },
+    "landmark": {
+      "type": "string"
+    }
+  }
+}

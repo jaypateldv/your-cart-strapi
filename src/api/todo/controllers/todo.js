@@ -43,7 +43,7 @@ module.exports = createCoreController('api::todo.todo', {
     let sanitizedQueryParams = await this.sanitizeQuery(ctx);
     const userId = ctx.state.user.id;
     const todo = await strapi.service('api::todo.todo').findOne(ctx.params.id, { populate: { user: true } });
-    if (todo.user.id !== userId)
+    if (!todo || todo.user.id !== userId)
       return ctx.badRequest('Todo not found to update');
     sanitizedQueryParams = { ...sanitizedQueryParams, user: { id: userId } };
     const results = await strapi.service('api::todo.todo').update(ctx.params.id, ctx.request.body);
