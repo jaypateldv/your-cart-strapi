@@ -842,30 +842,35 @@ export interface ApiOrderOrder extends Schema.CollectionType {
   info: {
     singularName: 'order';
     pluralName: 'orders';
-    displayName: 'order';
+    displayName: 'Order';
     description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    email: Attribute.String & Attribute.Required;
-    orderId: Attribute.UID & Attribute.Required;
-    paymentInfo: Attribute.JSON;
-    products: Attribute.JSON;
-    address: Attribute.Text & Attribute.Required;
-    name: Attribute.String & Attribute.Required;
-    transactionId: Attribute.String;
-    amount: Attribute.Integer & Attribute.Required;
-    status: Attribute.Enumeration<
-      ['outOfDelivery', 'delivered', 'pending', 'failedTransaction']
-    > &
-      Attribute.Required;
-    orderProducts: Attribute.Relation<
+    orderDateTime: Attribute.DateTime;
+    user: Attribute.Relation<
       'api::order.order',
-      'oneToMany',
-      'api::product.product'
+      'oneToOne',
+      'plugin::users-permissions.user'
     >;
+    product: Attribute.JSON;
+    transaction: Attribute.JSON;
+    status: Attribute.Enumeration<
+      [
+        'PaymentPending',
+        'PaymentSuccess',
+        'PaymentCancelled',
+        'PendingDelivery',
+        'OrderDelivered',
+        'OrderCancelled'
+      ]
+    >;
+    email: Attribute.String;
+    shippingAddress: Attribute.Text;
+    mobile: Attribute.String;
+    receiverName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -923,11 +928,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Required;
     price: Attribute.Integer & Attribute.Required;
     availableQty: Attribute.Integer & Attribute.Required;
-    order: Attribute.Relation<
-      'api::product.product',
-      'manyToOne',
-      'api::order.order'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

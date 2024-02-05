@@ -4,7 +4,7 @@
   "info": {
     "singularName": "order",
     "pluralName": "orders",
-    "displayName": "order",
+    "displayName": "Order",
     "description": ""
   },
   "options": {
@@ -12,50 +12,43 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "email": {
-      "type": "string",
-      "required": true
+    "orderDateTime": {
+      "type": "datetime"
     },
-    "orderId": {
-      "type": "uid",
-      "required": true
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
     },
-    "paymentInfo": {
+    "product": {
       "type": "json"
     },
-    "products": {
-      "type": "json"
-    },
-    "address": {
-      "type": "text",
-      "required": true
-    },
-    "name": {
-      "type": "string",
-      "required": true
-    },
-    "transactionId": {
-      "type": "string"
-    },
-    "amount": {
-      "type": "integer",
-      "required": true
+    "transaction": {
+      "type": "json",
+      "required": false
     },
     "status": {
       "type": "enumeration",
       "enum": [
-        "outOfDelivery",
-        "delivered",
-        "pending",
-        "failedTransaction"
-      ],
-      "required": true
+        "PaymentPending",
+        "PaymentSuccess",
+        "PaymentCancelled",
+        "PendingDelivery",
+        "OrderDelivered",
+        "OrderCancelled"
+      ]
     },
-    "orderProducts": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product",
-      "mappedBy": "order"
+    "email": {
+      "type": "string"
+    },
+    "shippingAddress": {
+      "type": "text"
+    },
+    "mobile": {
+      "type": "string"
+    },
+    "receiverName": {
+      "type": "string"
     }
   }
 }
