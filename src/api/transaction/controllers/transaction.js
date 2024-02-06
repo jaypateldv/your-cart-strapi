@@ -63,7 +63,7 @@ module.exports = {
       if (!order)
         return ctx.badRequest('order not found');
       const data = {
-        ...order, transaction, status: "PaymentSuccess"
+        ...order, transaction, status: "PaymentSuccess", estimatedDeliveryDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString()
       };
       const results = await strapi.service('api::order.order').update(orderId, { data });
       await strapi.service('api::cart.cart').delete(cart_id);

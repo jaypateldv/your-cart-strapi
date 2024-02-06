@@ -871,6 +871,8 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     shippingAddress: Attribute.Text;
     mobile: Attribute.String;
     receiverName: Attribute.String;
+    estimatedDeliveryDate: Attribute.DateTime;
+    deliveredOn: Attribute.DateTime;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

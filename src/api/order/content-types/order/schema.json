@@ -49,6 +49,12 @@
     },
     "receiverName": {
       "type": "string"
+    },
+    "estimatedDeliveryDate": {
+      "type": "datetime"
+    },
+    "deliveredOn": {
+      "type": "datetime"
     }
   }
 }
