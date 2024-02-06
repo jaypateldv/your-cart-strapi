@@ -42,11 +42,10 @@ module.exports = {
         success_url: `${process.env.REDIRECTION_URL}/payment/success?cart_id=${cart.id}&&order_id=${order.id}&&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${process.env.REDIRECTION_URL}/payment/cancel`,
       });
-      // ctx.redirect(session.url, 303);
-      // ctx.response.redirect(session.url);
-
+      // ctx.redirect("https://strapi.io/", 303);
+      // ctx.response.redirect("https://strapi.io/");
       ctx.body = {
-        redirect: session.url
+        redirect: session.url, order, cart
       };
       // ctx.body = 'ok';
     } catch (err) {
