@@ -29,48 +29,32 @@
       "type": "text",
       "required": false
     },
-    "image": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
-    },
-    "category": {
-      "type": "enumeration",
-      "enum": [
-        "tshirt",
-        "mug",
-        "hoodie",
-        "stickers"
-      ],
-      "default": "tshirt",
-      "required": true
-    },
     "size": {
       "type": "string",
       "maxLength": 20
     },
-    "color": {
-      "type": "enumeration",
-      "enum": [
-        "red",
-        "blue",
-        "green",
-        "black",
-        "white",
-        "yellow"
-      ],
-      "required": true
-    },
     "price": {
-      "type": "integer",
+      "type": "float",
       "required": true
     },
     "availableQty": {
       "type": "integer",
       "required": true
+    },
+    "image": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "float"
+    },
+    "color": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "float"
     }
   }
 }

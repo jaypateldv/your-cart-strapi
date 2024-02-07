@@ -916,20 +916,17 @@ export interface ApiProductProduct extends Schema.CollectionType {
         maxLength: 110;
       }>;
     description: Attribute.Text;
-    image: Attribute.Media & Attribute.Required;
-    category: Attribute.Enumeration<['tshirt', 'mug', 'hoodie', 'stickers']> &
-      Attribute.Required &
-      Attribute.DefaultTo<'tshirt'>;
     size: Attribute.String &
       Attribute.SetMinMaxLength<{
         maxLength: 20;
       }>;
-    color: Attribute.Enumeration<
-      ['red', 'blue', 'green', 'black', 'white', 'yellow']
-    > &
-      Attribute.Required;
-    price: Attribute.Integer & Attribute.Required;
+    price: Attribute.Float & Attribute.Required;
     availableQty: Attribute.Integer & Attribute.Required;
+    image: Attribute.String;
+    weight: Attribute.Float;
+    color: Attribute.String;
+    category: Attribute.String;
+    rating: Attribute.Float;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
