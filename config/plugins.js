@@ -1,5 +1,12 @@
 
-module.exports = ({ env })=>({
+module.exports = ({ env }) => ({
+  'users-permissions': {
+    // ...
+    jwt: {
+      // ...
+      expiresIn: '7d', // Updated to 7 days
+    },
+  },
   upload: {
     config: {
       providerOptions: {
